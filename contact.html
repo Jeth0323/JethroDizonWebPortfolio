@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — James Jethro Dizon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="images/logo.png">
+<meta name="description" content="Hi, I'm James — an IT student from the Philippines learning web development and looking for an internship." />
+<meta name="keywords" content="IT web developer, internship, James Jethro Dizon, Jethro Dizon">
+<meta name="author" content="James Jethro Dizon">
+</head>
+<body>
+
+  <header class="top-navbar">
+    <a href="index.html" class="logo-wraper"><img src="images/logo.png" alt="logo" class="mylogo" /></a>
+    <nav class="nav-mnu">
+      <a href="index.html" class="nav-item">home</a>
+      <a href="about.html" class="nav-item">about</a>
+      <a href="projects.html" class="nav-item">projects</a>
+      <a href="blog.html" class="nav-item">blog</a>
+      <a href="contact.html" class="nav-item active">contact</a>
+    </nav>
+    <button class="theme-toggle" id="themetoggle" aria-label="toggle theme">☀ light</button>
+    <button class="hamburgr" id="hamburgr" aria-label="menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+  <div class="mobi-menu" id="mobiMenu">
+    <a href="index.html">home</a>
+    <a href="about.html">about</a>
+    <a href="projects.html">projects</a>
+    <a href="blog.html">blog</a>
+    <a href="contact.html">contact</a>
+  </div>
+
+  <main>
+    <div class="inrpage-header">
+      <p class="small-title">— contact</p>
+      <h1>Let's<br><em>connect</em></h1>
+      <p>Looking for an internship. Open to project collabs too. Feel free to reach out I usually reply within a day or two.</p>
+    </div>
+
+    <div class="contact-conatiner">
+
+      <!--left-->
+      <div class="fadein">
+        <div class="opn-badge">
+          <span class="grn-dot"></span>
+          actively looking for internship
+        </div>
+
+        <p class="contact-txt">
+          I'm an IT student and I'm actively looking for a web development internship. Whether you have an opportunity, a project, or just want to say hi I'd genuinely love to hear from you.
+        </p>
+<!--my Contact info for contacts-->
+        <div class="contact-infolist">
+          <div class="contact-infrow">
+            <a href="mailto:jamesjethro@email.com">jamesjethro0323@gmail.com</a>
+          </div>
+          <div class="contact-infrow">
+            <span>107 Lalic Street, CANIDHA Subdivision, Mabalacat City, Pampanga 2010</span>
+          </div>
+          <div class="contact-infrow">
+            <span>IT Student — open to internship</span>
+          </div>
+          <div class="contact-infrow">
+            <span>replies within 1–2 days</span>
+          </div>
+        </div>
+<!--Social Media-->
+        <p class="socials-lbl">// find me online</p>
+        <div class="socials-list">
+          <a href="https://github.com/Jeth0323" class="social-lnk" target="_blank"> GitHub</a>
+          <a href="https://www.linkedin.com/in/james-jethro-dizon-8a4901375/" class="social-lnk" target="_blank"> LinkedIn</a>
+          <a href="https://www.facebook.com/share/1BzmEra2aU/" class="social-lnk" target="_blank"> Facebook</a>
+        </div>
+      </div>
+
+      <!--Form-->
+      <div class="fadein delay1">
+        <div class="myform">
+          <h3>Send a message</h3>
+          <p>Fill this in and I'll get back to you as soon as possible I can.</p>
+
+          <form id="mycontactform" novalidate>
+            <div class="frm-row">
+              <div class="frm-group">
+                <label class="frm-label" for="firstname">first name *</label>
+                <input class="frm-input" type="text" id="firstname" placeholder="Juan" required />
+              </div>
+              <div class="frm-group">
+                <label class="frm-label" for="lastname">last name *</label>
+                <input class="frm-input" type="text" id="lastname" placeholder="Dela Cruz" required />
+              </div>
+            </div>
+
+            <div class="frm-group">
+              <label class="frm-label" for="email">email *</label>
+              <input class="frm-input" type="email" id="email" placeholder="juadelacruzn@example.com" required />
+            </div>
+
+            <div class="frm-group">
+              <label class="frm-label" for="reason">reason for reaching out to me</label>
+              <select class="frm-select" id="reason">
+                <option value="">Select reason for email</option>
+                <option>Internship </option>
+                <option>Project Collaboration</option>
+                <option>Feedback on my portfolio</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="frm-group">
+              <label class="frm-label" for="usermsg">message *</label>
+              <textarea
+                class="frm-textarea"
+                id="usermsg"
+                placeholder="what's do you want to say.."
+                required
+                maxlength="500"
+                oninput="document.getElementById('charamt').textContent = this.value.length + ' / 500'"
+              ></textarea>
+              <div class="charcount" id="charamt">0 / 500</div>
+            </div>
+
+            <div class="frm-btns">
+              <button type="submit" class="bluebtn">send it →</button>
+              <button type="reset" class="bluebtn btn-outln" onclick="clearAlerts()">clear</button>
+            </div>
+
+            <div class="frm-msg ok" id="msgsuccess">sent! i'll get back to you soon.</div>
+            <div class="frm-msg err" id="msgerror">please fill in all the required fields.</div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </main>
+<!--FOoter-->
+  <footer class="page-footer">
+    <span>made by james jethro dizon · 2025</span>
+    <div class="footer-navlinks">
+      <a href="index.html">home</a>
+      <a href="about.html">about</a>
+      <a href="projects.html">projects</a>
+      <a href="blog.html">blog</a>
+      <a href="contact.html">contact</a>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script>
+    //this is for the form
+    document.getElementById('mycontactform').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var firstname = document.getElementById('firstname').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var usermsg   = document.getElementById('usermsg').value.trim();
+      var ok    = document.getElementById('msgsuccess');
+      var err   = document.getElementById('msgerror');
+      var emailOk = email.indexOf('@') > 0 && email.indexOf('.') > 0;
+      //to check for error to return
+      if (!firstname || !email || !usermsg || !emailOk) {
+        err.style.display = 'block';
+        ok.style.display  = 'none';
+        return;
+      }
+      err.style.display = 'none';
+      ok.style.display  = 'block';
+      this.reset();
+      document.getElementById('charamt').textContent = '0 / 500';
+      setTimeout(function() { ok.style.display = 'none'; }, 5000);
+    });
+    //to clear alert
+    function clearAlerts() {
+      document.getElementById('msgsuccess').style.display  = 'none';
+      document.getElementById('msgerror').style.display = 'none';
+      document.getElementById('charamt').textContent = '0 / 500';
+    }
+  </script>
+</body>
+</html>
