@@ -91,18 +91,30 @@ for (var x = 0; x < allnavlinks.length; x++) {
   }
 }
 
-// simple mouse trail
+// mouse trail
 document.addEventListener('mousemove', function(e) {
   var isLight = document.body.classList.contains('lightmode');
-  var color = isLight ? 'rgba(37,99,235,.45)' : 'rgba(59,130,246,.5)';
+  var color = isLight ? 'rgba(37,99,235,.55)' : 'rgba(59,130,246,.65)';
+  var size = 7;
   var dot = document.createElement('div');
-  dot.style.cssText = 'position:fixed;left:' + e.clientX + 'px;top:' + e.clientY + 'px;width:6px;height:6px;border-radius:50%;background:' + color + ';pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:opacity .4s,transform .4s';
-  document.body.appendChild(dot);
-  setTimeout(function() {
-    dot.style.opacity = '0';
-    dot.style.transform = 'translate(-50%,-50%) scale(0)';
-  }, 30);
-  setTimeout(function() { dot.remove(); }, 430);
+  // set position and style with no transition at all — position is always instant
+  dot.style.position = 'fixed';
+  dot.style.left = (e.clientX - size / 2) + 'px';
+  dot.style.top = (e.clientY - size / 2) + 'px';
+  dot.style.width = size + 'px';
+  dot.style.height = size + 'px';
+  dot.style.borderRadius = '50%';
+  dot.style.background = color;
+  dot.style.pointerEvents = 'none';
+  dot.style.zIndex = '9999';
+  dot.style.opacity = '1';
+  dot.style.transition = 'opacity .4s ease';
+  document.documentElement.appendChild(dot);
+  // fade out only — no size change so position stays exact
+  requestAnimationFrame(function() {
+    setTimeout(function() { dot.style.opacity = '0'; }, 40);
+  });
+  setTimeout(function() { dot.remove(); }, 460);
 });
 
 // dark / light mode toggle
