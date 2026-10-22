@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects — James Jethro Dizon</title>
+  <title>Projects of James Jethro Dizon</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="style.css" />
@@ -11,8 +11,25 @@
 <meta name="description" content="Hi, I'm James — an IT student from the Philippines learning web development and looking for an internship." />
 <meta name="keywords" content="IT web developer, internship, James Jethro Dizon, Jethro Dizon">
 <meta name="author" content="James Jethro Dizon">
+<!-- social share preview (uncomment and fill in once your site is live) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="James Jethro Dizon" />
+<meta property="og:title" content="Projects of James Jethro Dizon" />
+<meta property="og:description" content="Websites and apps I've built and contributed to while learning web development at Holy Angel University." />
+<!-- <meta property="og:url" content="https://YOUR-SITE-URL/" /> -->
+<!-- <meta property="og:image" content="https://YOUR-SITE-URL/images/profile.png" /> -->
+<meta name="twitter:card" content="summary" />
 </head>
 <body>
+
+  <div class="loadscreen" id="loadscreen">
+    <div class="load-inner">
+      <img src="images/logo.png" alt="JD" class="load-logo" />
+      <div class="load-bar"><div class="load-fill"></div></div>
+    </div>
+  </div>
+
+  <button class="backtotop" id="backtotop" aria-label="back to top">↑</button>
 
   <header class="top-navbar">
     <a href="index.html" class="logo-wraper"><img src="images/logo.png" alt="logo" class="mylogo" /></a>
@@ -48,12 +65,26 @@
         These are projects I built and participated during my years of learning web development within Holy Angel University through school activities and self-study.
       </p>
 
+      <div class="filter-bar fadein">
+        <div class="filter-btns" id="projFilters">
+          <button type="button" class="filter-btn active" data-filter="all">all</button>
+          <button type="button" class="filter-btn" data-filter="web">web</button>
+          <button type="button" class="filter-btn" data-filter="php">php</button>
+          <button type="button" class="filter-btn" data-filter="mobile">mobile</button>
+        </div>
+      </div>
+
       <!-- CAROUSEL -->
       <div class="proj-carousel fadein">
+        <div class="carousel-progress"><div class="carousel-progress-fill" id="carouselProgress"></div></div>
+        <div class="carousel-header">
+          <span class="carousel-counter" id="carouselCounter2">01 / 05</span>
+          <span class="carousel-title-preview" id="carouselTitlePreview">Triptrove</span>
+        </div>
         <div class="carousel-track" id="carouselTrack">
 
           <!-- PROJECT 1 -->
-          <article class="proj-blok">
+          <article class="proj-blok" data-cat="web">
             <div class="proj-blok-inner">
               <div class="proj-imgside proj4bg">
                 <span class="proj-icon"><img src="images/triptrove.png"></span>
@@ -80,7 +111,7 @@
           </article>
 
           <!-- PROJECT 2 -->
-          <article class="proj-blok">
+          <article class="proj-blok" data-cat="web">
             <div class="proj-blok-inner">
               <div class="proj-imgside proj4bg">
                 <span class="proj-icon"><img src="images/sportsent.png"></span>
@@ -105,7 +136,7 @@
           </article>
 
           <!-- PROJECT 3 -->
-          <article class="proj-blok">
+          <article class="proj-blok" data-cat="web php">
             <div class="proj-blok-inner">
               <div class="proj-imgside proj4bg">
                 <span class="proj-icon"><img src="images/fastline.png"></span>
@@ -131,7 +162,7 @@
           </article>
 
           <!-- PROJECT 4 -->
-          <article class="proj-blok">
+          <article class="proj-blok" data-cat="web">
             <div class="proj-blok-inner">
               <div class="proj-imgside proj4bg">
                 <span class="proj-icon"><img src="images/calculator.png"></span>
@@ -157,7 +188,7 @@
           </article>
 
           <!-- PROJECT 5 -->
-          <article class="proj-blok">
+          <article class="proj-blok" data-cat="mobile">
             <div class="proj-blok-inner">
               <div class="proj-imgside proj4bg">
                 <span class="proj-icon"><img src="images/PottyPal.PNG"></span>
@@ -185,10 +216,14 @@
         </div>
 
         <!-- carousel controls -->
+        <div class="carousel-thumbs" id="carouselThumbs"></div>
         <div class="carousel-ctrls">
-          <button class="carousel-btn" id="carouselPrev" aria-label="previous">←</button>
+          <div class="carousel-btns">
+            <button class="carousel-btn" id="carouselPrev" aria-label="previous">←</button>
+            <button class="carousel-btn" id="carouselNext" aria-label="next">→</button>
+          </div>
           <div class="carousel-dots" id="carouselDots"></div>
-          <button class="carousel-btn" id="carouselNext" aria-label="next">→</button>
+          <span class="carousel-counter" id="carouselCounter">01 / 05</span>
         </div>
       </div>
 
@@ -210,27 +245,103 @@
   <script>
     var track = document.getElementById('carouselTrack');
     var dotsEl = document.getElementById('carouselDots');
-    var slides = track.querySelectorAll('.proj-blok');
+    var thumbsEl = document.getElementById('carouselThumbs');
+    var progressEl = document.getElementById('carouselProgress');
+    var counterEl = document.getElementById('carouselCounter');
+    var counter2El = document.getElementById('carouselCounter2');
+    var titleEl = document.getElementById('carouselTitlePreview');
+    var allSlides = Array.prototype.slice.call(track.querySelectorAll('.proj-blok'));
+    var slides = allSlides.slice();   // slides that match the current filter
+    var total = slides.length;
     var cur = 0;
 
-    for (var i = 0; i < slides.length; i++) {
-      var d = document.createElement('button');
-      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      d.setAttribute('aria-label', 'project ' + (i + 1));
-      d.dataset.idx = i;
-      d.addEventListener('click', function() { goTo(parseInt(this.dataset.idx)); });
-      dotsEl.appendChild(d);
+    // collect project titles and images for thumbs/header
+    var projData = [];
+    for (var i = 0; i < allSlides.length; i++) {
+      var titl = allSlides[i].querySelector('.proj-titl');
+      var img  = allSlides[i].querySelector('.proj-icon img');
+      projData.push({
+        title: titl ? titl.textContent.trim() : 'Project ' + (i+1),
+        img:   img  ? img.getAttribute('src') : null
+      });
+    }
+
+    // dots + thumbnails are rebuilt whenever the filter changes
+    function buildNav() {
+      dotsEl.innerHTML = '';
+      thumbsEl.innerHTML = '';
+      for (var i = 0; i < total; i++) {
+        var data = projData[allSlides.indexOf(slides[i])];
+
+        var d = document.createElement('button');
+        d.className = 'carousel-dot' + (i === cur ? ' active' : '');
+        d.setAttribute('aria-label', 'project ' + (i+1));
+        d.dataset.idx = i;
+        d.addEventListener('click', function() { goTo(parseInt(this.dataset.idx)); });
+        dotsEl.appendChild(d);
+
+        var th = document.createElement('button');
+        th.className = 'carousel-thumb' + (i === cur ? ' active' : '');
+        th.dataset.idx = i;
+        if (data.img) {
+          var timg = document.createElement('img');
+          timg.src = data.img;
+          timg.alt = data.title;
+          th.appendChild(timg);
+        } else {
+          th.textContent = data.title;
+        }
+        th.addEventListener('click', function() { goTo(parseInt(this.dataset.idx)); });
+        thumbsEl.appendChild(th);
+      }
+    }
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function updateUI() {
+      progressEl.style.width = total ? ((cur + 1) / total * 100) + '%' : '0%';
+      var txt = pad(total ? cur + 1 : 0) + ' / ' + pad(total);
+      if (counterEl)  counterEl.textContent  = txt;
+      if (counter2El) counter2El.textContent = txt;
+      if (titleEl) titleEl.textContent = total ? projData[allSlides.indexOf(slides[cur])].title : '';
+      var dots = dotsEl.querySelectorAll('.carousel-dot');
+      for (var i = 0; i < dots.length; i++) dots[i].classList.toggle('active', i === cur);
+      var thumbs = thumbsEl.querySelectorAll('.carousel-thumb');
+      for (var j = 0; j < thumbs.length; j++) thumbs[j].classList.toggle('active', j === cur);
     }
 
     function goTo(n) {
+      if (!total) return;
       slides[cur].classList.remove('active');
-      dotsEl.querySelectorAll('.carousel-dot')[cur].classList.remove('active');
-      cur = (n + slides.length) % slides.length;
+      cur = (n + total) % total;
       slides[cur].classList.add('active');
-      dotsEl.querySelectorAll('.carousel-dot')[cur].classList.add('active');
+      updateUI();
+    }
+
+    function applyProjFilter(filter) {
+      for (var i = 0; i < allSlides.length; i++) allSlides[i].classList.remove('active');
+      slides = allSlides.filter(function(s) {
+        return filter === 'all' || (' ' + s.getAttribute('data-cat') + ' ').indexOf(' ' + filter + ' ') > -1;
+      });
+      total = slides.length;
+      cur = 0;
+      if (total) slides[0].classList.add('active');
+      buildNav();
+      updateUI();
+    }
+
+    var projFilterBtns = document.querySelectorAll('#projFilters .filter-btn');
+    for (var f = 0; f < projFilterBtns.length; f++) {
+      projFilterBtns[f].addEventListener('click', function() {
+        for (var g = 0; g < projFilterBtns.length; g++) projFilterBtns[g].classList.remove('active');
+        this.classList.add('active');
+        applyProjFilter(this.getAttribute('data-filter'));
+      });
     }
 
     slides[0].classList.add('active');
+    buildNav();
+    updateUI();
 
     document.getElementById('carouselPrev').addEventListener('click', function() { goTo(cur - 1); });
     document.getElementById('carouselNext').addEventListener('click', function() { goTo(cur + 1); });

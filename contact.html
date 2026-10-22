@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — James Jethro Dizon</title>
+  <title>Contact James Jethro Dizon</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="style.css" />
@@ -11,8 +11,25 @@
 <meta name="description" content="Hi, I'm James — an IT student from the Philippines learning web development and looking for an internship." />
 <meta name="keywords" content="IT web developer, internship, James Jethro Dizon, Jethro Dizon">
 <meta name="author" content="James Jethro Dizon">
+<!-- social share preview (uncomment and fill in once your site is live) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="James Jethro Dizon" />
+<meta property="og:title" content="Contact James Jethro Dizon" />
+<meta property="og:description" content="Get in touch with James Jethro Dizon. Open to internships and project collaborations." />
+<!-- <meta property="og:url" content="https://YOUR-SITE-URL/" /> -->
+<!-- <meta property="og:image" content="https://YOUR-SITE-URL/images/profile.png" /> -->
+<meta name="twitter:card" content="summary" />
 </head>
 <body>
+
+  <div class="loadscreen" id="loadscreen">
+    <div class="load-inner">
+      <img src="images/logo.png" alt="JD" class="load-logo" />
+      <div class="load-bar"><div class="load-fill"></div></div>
+    </div>
+  </div>
+
+  <button class="backtotop" id="backtotop" aria-label="back to top">↑</button>
 
   <header class="top-navbar">
     <a href="index.html" class="logo-wraper"><img src="images/logo.png" alt="logo" class="mylogo" /></a>
@@ -49,7 +66,7 @@
       <div class="fadein">
         <div class="opn-badge">
           <span class="grn-dot"></span>
-          actively looking for internship
+          actively looking for opportunities
         </div>
 
         <p class="contact-txt">
@@ -59,6 +76,7 @@
         <div class="contact-infolist">
           <div class="contact-infrow">
             <a href="mailto:jamesjethro0323@gmail.com">jamesjethro0323@gmail.com</a>
+            <button type="button" class="copy-btn" id="copyemail" aria-label="copy email address">copy</button>
           </div>
           <div class="contact-infrow">
             <a href="tel:+639665525875">+63 966 552 5875</a>
@@ -88,7 +106,7 @@
           <h3>Send a message</h3>
           <p>Fill this in and I'll get back to you as soon as possible I can.</p>
 
-          <form id="mycontactform" novalidate>
+          <form id="mycontactform" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
             <div class="frm-row">
               <div class="frm-group">
                 <label class="frm-label" for="firstname">first name *</label>
@@ -176,6 +194,15 @@
       this.reset();
       document.getElementById('charamt').textContent = '0 / 500';
       setTimeout(function() { ok.style.display = 'none'; }, 5000);
+    });
+    //copy email button
+    document.getElementById('copyemail').addEventListener('click', function() {
+      var b = this;
+      copyText('jamesjethro0323@gmail.com', function() {
+        b.textContent = 'copied ✓';
+        b.classList.add('done');
+        setTimeout(function() { b.textContent = 'copy'; b.classList.remove('done'); }, 2000);
+      });
     });
     //to clear alert
     function clearAlerts() {

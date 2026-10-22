@@ -144,3 +144,98 @@ document.addEventListener('touchstart', function() {
 document.addEventListener('touchend', function() {
   document.body.classList.remove('glitching');
 }, {passive:true});
+
+// loading screen
+window.addEventListener('load', function() {
+  var ls = document.getElementById('loadscreen');
+  if (ls) {
+    setTimeout(function() {
+      ls.classList.add('hidden');
+    }, 1300);
+  }
+});
+
+// back to top
+var btt = document.getElementById('backtotop');
+if (btt) {
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 300) {
+      btt.classList.add('visible');
+    } else {
+      btt.classList.remove('visible');
+    }
+  });
+  btt.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// glitch on mousedown / long press
+document.addEventListener('mousedown', function() {
+  document.body.classList.add('glitching');
+});
+document.addEventListener('mouseup', function() {
+  document.body.classList.remove('glitching');
+});
+document.addEventListener('touchstart', function() {
+  document.body.classList.add('glitching');
+}, {passive:true});
+document.addEventListener('touchend', function() {
+  document.body.classList.remove('glitching');
+}, {passive:true});
+
+// ===== extras: copy helper, typing effect =====
+
+// copies text to the clipboard, calls done() when finished (works on http too)
+function copyText(text, done) {
+  function fallback() {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (err) {}
+    ta.remove();
+    if (done) done();
+  }
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(function() { if (done) done(); }, fallback);
+  } else {
+    fallback();
+  }
+}
+
+// typing effect on the home page subtitle
+(function() {
+  var el = document.querySelector('.main-intro .subttle');
+  if (!el) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var phrases = [
+    'IT student · aspiring frontend dev',
+    'web developer in the making',
+    'problem solver at heart',
+    'open to my next role'
+  ];
+  el.setAttribute('aria-label', el.textContent.trim());
+  el.classList.add('typing');
+
+  var p = 0, c = 0, deleting = false;
+  function tick() {
+    var full = phrases[p];
+    if (!deleting) {
+      c++;
+      el.textContent = full.slice(0, c);
+      if (c === full.length) { deleting = true; setTimeout(tick, 1800); return; }
+      setTimeout(tick, 70);
+    } else {
+      c--;
+      el.textContent = full.slice(0, c);
+      if (c === 0) { deleting = false; p = (p + 1) % phrases.length; setTimeout(tick, 350); return; }
+      setTimeout(tick, 35);
+    }
+  }
+  el.textContent = '';
+  setTimeout(tick, 1500);
+})();

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog — James Jethro Dizon</title>
+  <title>Blog of James Jethro Dizon</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 <link rel="icon" href="images/logo.png">
@@ -11,8 +11,25 @@
 <meta name="description" content="Hi, I'm James — an IT student from the Philippines learning web development and looking for an internship." />
 <meta name="keywords" content="IT web developer, internship, James Jethro Dizon, Jethro Dizon">
 <meta name="author" content="James Jethro Dizon">
+<!-- social share preview (uncomment and fill in once your site is live) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="James Jethro Dizon" />
+<meta property="og:title" content="Blog of James Jethro Dizon" />
+<meta property="og:description" content="My dev journal: honest notes on learning web development, my IT support internship, and the lessons along the way." />
+<!-- <meta property="og:url" content="https://YOUR-SITE-URL/" /> -->
+<!-- <meta property="og:image" content="https://YOUR-SITE-URL/images/profile.png" /> -->
+<meta name="twitter:card" content="summary" />
 </head>
 <body>
+
+  <div class="loadscreen" id="loadscreen">
+    <div class="load-inner">
+      <img src="images/logo.png" alt="JD" class="load-logo" />
+      <div class="load-bar"><div class="load-fill"></div></div>
+    </div>
+  </div>
+
+  <button class="backtotop" id="backtotop" aria-label="back to top">↑</button>
 
   <header class="top-navbar">
     <a href="index.html" class="logo-wraper"><img src="images/logo.png" alt="logo" class="mylogo" /></a>
@@ -44,9 +61,58 @@
     </div>
       <!-- Blog posts -->
       <div class="blog-conatiner">
+        <div class="filter-bar fadein">
+          <div class="filter-btns" id="blogFilters">
+            <button type="button" class="filter-btn active" data-filter="all">all</button>
+            <button type="button" class="filter-btn" data-filter="learning">learning</button>
+            <button type="button" class="filter-btn" data-filter="tips">tips</button>
+            <button type="button" class="filter-btn" data-filter="work">work</button>
+          </div>
+          <input type="search" class="filter-search" id="blogSearch" placeholder="search posts.." aria-label="search posts" />
+        </div>
+        <p class="no-results" id="noResults">no posts match that. try another word or category.</p>
         <div class="blog-list">
 
-          <article class="blogcard fadein">
+          <!-- POST 1 -->
+          <article class="blogcard fadein" data-cat="work">
+            <div class="blog-imgarea blog1bg">
+              <div class="blog-catgry">work</div>
+            </div>
+            <div class="blog-txtarea">
+              <p class="blog-date-info">october 2026 · 4 min read</p>
+              <h2 class="blog-titl">What my IT support internship taught me about building websites</h2>
+              <p class="blog-prevw">I went in expecting to fix printers and reset passwords. I came out thinking differently about how I write code and who I write it for.</p>
+              <button class="readmore-btn" onclick="togglePost('post3', this)">read more</button>
+              <div class="article-hiddn" id="post3">
+                <div class="article-txt">
+                  <p>I just finished my internship as an IT Support Intern at Clark Outsourcing, which ran from July to October 2026. When I started, I honestly thought it had nothing to do with web development. My days were about diagnosing hardware, software, and network problems for staff. Looking back, it taught me more about building for real people than any tutorial did.</p>
+
+                  <h4>Users don't read, and they don't care how it works</h4>
+                  <p>Most of the people I helped weren't technical at all. They didn't want to know why their connection dropped. They wanted it fixed and wanted to know what to do if it happened again. I had to explain things in plain words, and that was harder than the fix itself.</p>
+                  <p>The same applies to websites. Nobody visiting a page cares about my Flexbox layout. They care that the button is where they expect it and that the page doesn't confuse them.</p>
+
+                  <h4>Troubleshooting is a skill you can practice</h4>
+                  <p>A good habit I picked up was to change one thing at a time. Check the cable, then the settings, then restart. If you change five things at once and it works, you never learn what actually fixed it.</p>
+                  <p>Now when my JavaScript breaks, I stop guessing and isolate the problem. I comment out code, use console.log, and test small pieces. It saves me a lot of frustration.</p>
+
+                  <h4>Documenting things matters</h4>
+                  <p>When the same problem came up twice, having notes on the fix made it ten times faster. I've started doing this for my own projects too, even short notes on what broke and how I solved it. This blog is partly for that reason.</p>
+
+                  <h4>What I'm taking with me</h4>
+                  <p>Be patient, explain things simply, and build for the person on the other side of the screen. I'm still a student and still learning, but that internship made me a better developer than I would have been without it.</p>
+                  <div class="share-row" data-post="post3">
+                    <span class="share-lbl">// share this post</span>
+                    <a class="share-btn" data-net="linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="share-btn" data-net="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+                    <button type="button" class="share-btn" data-net="copy">Copy link</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- POST 2 -->
+          <article class="blogcard fadein delay1" data-cat="learning">
             <div class="blog-imgarea blog1bg">
               <div class="blog-catgry">learning</div>
             </div>
@@ -57,17 +123,32 @@
               <button class="readmore-btn" onclick="togglePost('post1', this)">read more</button>
               <div class="article-hiddn" id="post1">
                 <div class="article-txt">
-                  <p>Write your full article here. Talk about what you built, what broke, what you googled, and what finally clicked.</p>
+                  <p>Before this, I had only built pages that sat there and looked nice. A to-do list app was the first time I made something that responds to what a person does. You type something, press a button, and the page changes. It sounds basic, but when it worked for the first time it felt like magic.</p>
+
                   <h4>What went wrong first</h4>
-                  <p>Add more details here about the bugs you hit and how you fixed them.</p>
+                  <p>My first problem was that nothing happened when I clicked the add button. I spent almost an hour before I realized my script was loading before the HTML elements existed, so JavaScript couldn't find them. Moving the script tag to the bottom of the page fixed it. I felt silly, but I never forgot that lesson.</p>
+                  <p>The second problem was that every time I refreshed the page, all my tasks disappeared. That's how I learned about localStorage. Saving the list and loading it back when the page opens was the point where the app started feeling like a real app.</p>
+                  <p>I also had a bug where deleting one task removed the wrong one. It turned out I was using the position of the task in the list, which changed after every delete. Giving each task its own unique id solved it.</p>
+
+                  <h4>What surprised me</h4>
+                  <p>I expected the hard part to be writing code. Mostly it was reading error messages and breaking the problem into smaller pieces. Once I stopped being scared of the red text in the console, debugging got a lot easier.</p>
+
                   <h4>What I'd do differently</h4>
-                  <p>Reflection goes here.</p>
+                  <p>I'd plan on paper first. I jumped straight into coding and rewrote parts three times. Now I write down what the app should do, step by step, before touching the keyboard. I'd also commit to GitHub more often, because I lost working code at least once.</p>
+                  <p>If you're a beginner reading this, build something small and finish it. A finished to-do app taught me more than ten tutorials I only watched.</p>
+                  <div class="share-row" data-post="post1">
+                    <span class="share-lbl">// share this post</span>
+                    <a class="share-btn" data-net="linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="share-btn" data-net="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+                    <button type="button" class="share-btn" data-net="copy">Copy link</button>
+                  </div>
                 </div>
               </div>
             </div>
           </article>
 
-          <article class="blogcard fadein delay1">
+          <!-- POST 3 -->
+          <article class="blogcard fadein delay2" data-cat="tips">
             <div class="blog-imgarea blog2bg">
               <div class="blog-catgry">tips</div>
             </div>
@@ -78,11 +159,26 @@
               <button class="readmore-btn" onclick="togglePost('post2', this)">read more</button>
               <div class="article-hiddn" id="post2">
                 <div class="article-txt">
-                  <p>Write your full article here. Explain flexbox in your own words, the way it finally made sense to you.</p>
+                  <p>For weeks I copied Flexbox code from tutorials without understanding it. I'd add display: flex, things would move, and I'd keep changing random properties until it looked right. That's not understanding, that's luck.</p>
+
                   <h4>The part that confused me</h4>
-                  <p>Add your explanation here.</p>
+                  <p>What confused me most was justify-content and align-items. I kept mixing them up. They sound almost the same, and I couldn't remember which one moved things sideways and which moved them up and down.</p>
+
+                  <h4>The idea that made it click</h4>
+                  <p>Flexbox has a main axis and a cross axis. By default, the main axis runs left to right and the cross axis runs top to bottom. justify-content controls the main axis. align-items controls the cross axis. That's it.</p>
+                  <p>The part I missed for so long is that when you set flex-direction to column, the axes swap. Then justify-content works up and down and align-items works left and right. That was why my layouts kept doing the opposite of what I expected.</p>
+
                   <h4>The analogy that helped</h4>
-                  <p>Your own analogy or explanation goes here.</p>
+                  <p>I think of a shelf with books on it. The shelf is the container. justify-content decides how the books are spread along the shelf: pushed to one end, spread out, or centered. align-items decides how they sit against the shelf's height, like tall and short books lined up at the bottom or the top.</p>
+
+                  <h4>What helped me practice</h4>
+                  <p>Flexbox Froggy, a free game, helped a lot. After that I rebuilt my navbar from scratch without looking at any code, and a centered layout I'd always struggled with. If you're stuck, stop reading and practice. It makes sense much faster when your hands are doing it.</p>
+                  <div class="share-row" data-post="post2">
+                    <span class="share-lbl">// share this post</span>
+                    <a class="share-btn" data-net="linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="share-btn" data-net="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+                    <button type="button" class="share-btn" data-net="copy">Copy link</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -93,7 +189,7 @@
 
       <!-- Testimonials -->
       <div class="testimonials-area fadein">
-        <h2>what are the people's feedback on me</h2>
+        <h2>what people say</h2>
         <div class="testimonials-list">
 
           <blockquote class="testi-blok">
@@ -122,7 +218,7 @@
 
           <blockquote class="testi-blok">
             <div class="star-ratng">★★★★</div>
-            <p class="testi-txt">"We worked together on a school group project and Jethro colunteered to take care of all the front-end. He stayed late fixing bugs and made sure it worked on mobile before we submitted. Solid teammate."</p>
+            <p class="testi-txt">"We worked together on a school group project and Jethro volunteered to take care of all the front-end. He stayed late fixing bugs and made sure it worked on mobile before we submitted. Solid teammate."</p>
             <footer class="testi-persn">
               <div class="testi-avtr avatar-light">RC</div>
               <div>
@@ -135,7 +231,6 @@
         </div>
       </div>
 
-    </div>
   </main>
 
   <footer class="page-footer">
@@ -156,6 +251,71 @@
       var open = el.classList.toggle('open');
       btn.textContent = open ? 'close ✕' : 'read more';
     }
+
+    // ----- filter + search -----
+    var blogCards = document.querySelectorAll('.blogcard');
+    var blogSearch = document.getElementById('blogSearch');
+    var noResults = document.getElementById('noResults');
+    var activeCat = 'all';
+
+    function applyBlogFilter() {
+      var q = blogSearch.value.trim().toLowerCase();
+      var shown = 0;
+      for (var i = 0; i < blogCards.length; i++) {
+        var card = blogCards[i];
+        var text = (card.querySelector('.blog-titl').textContent + ' ' +
+                    card.querySelector('.blog-prevw').textContent + ' ' +
+                    card.querySelector('.article-txt').textContent).toLowerCase();
+        var show = (activeCat === 'all' || card.getAttribute('data-cat') === activeCat) &&
+                   (!q || text.indexOf(q) > -1);
+        card.classList.toggle('hide', !show);
+        if (show) shown++;
+      }
+      noResults.classList.toggle('show', shown === 0);
+      checkScroll();
+    }
+
+    var filterBtns = document.querySelectorAll('#blogFilters .filter-btn');
+    for (var f = 0; f < filterBtns.length; f++) {
+      filterBtns[f].addEventListener('click', function() {
+        for (var g = 0; g < filterBtns.length; g++) filterBtns[g].classList.remove('active');
+        this.classList.add('active');
+        activeCat = this.getAttribute('data-filter');
+        applyBlogFilter();
+      });
+    }
+    blogSearch.addEventListener('input', applyBlogFilter);
+
+    // ----- share buttons -----
+    var shareRows = document.querySelectorAll('.share-row');
+    for (var r = 0; r < shareRows.length; r++) {
+      (function(row) {
+        var url = window.location.href.split('#')[0] + '#' + row.getAttribute('data-post');
+        var enc = encodeURIComponent(url);
+        row.querySelector('[data-net="linkedin"]').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + enc;
+        row.querySelector('[data-net="facebook"]').href = 'https://www.facebook.com/sharer/sharer.php?u=' + enc;
+        var copyBtn = row.querySelector('[data-net="copy"]');
+        copyBtn.addEventListener('click', function() {
+          copyText(url, function() {
+            copyBtn.textContent = 'Copied ✓';
+            setTimeout(function() { copyBtn.textContent = 'Copy link'; }, 2000);
+          });
+        });
+      })(shareRows[r]);
+    }
+
+    // open a post straight from a shared link like blog.html#post1
+    window.addEventListener('load', function() {
+      var id = window.location.hash.replace('#', '');
+      var box = id ? document.getElementById(id) : null;
+      if (box && box.classList.contains('article-hiddn')) {
+        box.classList.add('open');
+        box.parentNode.querySelector('.readmore-btn').textContent = 'close ✕';
+        setTimeout(function() {
+          box.closest('.blogcard').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 700);
+      }
+    });
   </script>
   
 </body>

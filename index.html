@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>James Jethro Dizon</title>
+  <title>James Jethro Dizon Website Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="style.css" />
@@ -11,8 +11,27 @@
 <meta name="description" content="Hi, I'm James — an IT student from the Philippines learning web development and looking for an internship." />
 <meta name="keywords" content="IT web developer, internship, James Jethro Dizon, Jethro Dizon">
 <meta name="author" content="James Jethro Dizon">
+<!-- social share preview (uncomment and fill in once your site is live) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="James Jethro Dizon" />
+<meta property="og:title" content="James Jethro Dizon Website Portfolio" />
+<meta property="og:description" content="Hi, I'm James — an IT student from the Philippines learning web development and looking for an internship." />
+<!-- <meta property="og:url" content="https://YOUR-SITE-URL/" /> -->
+<!-- <meta property="og:image" content="https://YOUR-SITE-URL/images/profile.png" /> -->
+<meta name="twitter:card" content="summary" />
 </head>
 <body>
+
+  <!-- loading screen -->
+  <div class="loadscreen" id="loadscreen">
+    <div class="load-inner">
+      <img src="images/logo.png" alt="JD" class="load-logo" />
+      <div class="load-bar"><div class="load-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- back to top -->
+  <button class="backtotop" id="backtotop" aria-label="back to top">↑</button>
 
   <!-- NAV -->
   <header class="top-navbar">
@@ -52,7 +71,7 @@
         </div>
         <p class="subttle">IT student · aspiring frontend dev</p>
         <p class="intro-paragraph">
-          Hello everyone my name is James Jethro Dizon. I am an IT Student of Holy Angel University learning Web Development and looking for an internship for a position of Frontend Developer and Junior Web Developer. I have been learning web development for almost 4 years now and I'm currently looking for an internship with the intent to further develop my skills and experience work environment regarding my profession.
+          I'm an IT student at Holy Angel University specializing in web development, with hands-on experience as an IT Support Intern at Clark Outsourcing. I build things with HTML, CSS, JavaScript, and PHP — and I'm actively looking for a frontend or junior web dev role where I can keep growing.
         </p>
         <div class="btn-holder">
           <a href="resume.pdf" download class="bluebtn">Check My Resume</a>
@@ -62,7 +81,7 @@
       <div class="intro-right">
         <div class="avail-box">
           <span class="grn-dot"></span>
-          <span>IT Support Intern @ Clark Outsourcing</span>
+          <span>Finished IT Support Internship · Clark Outsourcing</span>
         </div>
         <div class="stat-list">
           <div class="each-stat">
@@ -130,15 +149,15 @@
           </div>
         </a>
 
-        <a href="projects.html" class="projcard" aria-label="Ghost Project">
+        <a href="projects.html" class="projcard" aria-label="Calculator">
           <div class="proj-imgside proj4bg">
-            <span class="proj-icon"><img src="images/ghostproject.png"></span>
-            <span class="stack-tag">HTML / CSS </span>
+            <span class="proj-icon"><img src="images/calculator.png"></span>
+            <span class="stack-tag">HTML / CSS / JS</span>
           </div>
           <div class="card-info">
             <p class="card-numbr">04</p>
-            <h3 class="card-titl">Ghost Project</h3>
-            <p class="card-descrp">This is one of my creation during my first year of coding. This website catalogs famous Characters and Icons from Horror Shows.</p>
+            <h3 class="card-titl">Calculator</h3>
+            <p class="card-descrp">A fully functional calculator built with vanilla JS. Supports arithmetic, keyboard input, percentage, and sign toggle.</p>
           </div>
         </a>
 
