@@ -131,3 +131,16 @@ if (themeBtn) {
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
   });
 }
+// glitch on mousedown / long press
+document.addEventListener('mousedown', function() {
+  document.body.classList.add('glitching');
+});
+document.addEventListener('mouseup', function() {
+  document.body.classList.remove('glitching');
+});
+document.addEventListener('touchstart', function() {
+  document.body.classList.add('glitching');
+}, {passive:true});
+document.addEventListener('touchend', function() {
+  document.body.classList.remove('glitching');
+}, {passive:true});
